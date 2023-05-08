@@ -16,7 +16,7 @@ The default application is in Python. This application serves from the root (`/`
 
 The application in Node runs on port 9100 and receives the requests with the `/node` prefix. This port also is not exposed outside the container.
 
-The application in Go runs on port 8000 and receives requests with the "/go" prefix. This port is exposed as the container port.
+The application in Go runs on port 8000 and receives requests with the `/go` prefix. This port is exposed as the container port.
 
 Additionally, one more special prefix, `/google`, will redirect to Google Search.
 
@@ -24,7 +24,7 @@ Recap:
 
 - `/node*` goes to the Node application
 - `/go*` goes to the Go application
-- `/google` goes to "httts://google.com".
+- `/google` goes to "https://google.com".
 - `/*` - everything else goes to the default Python application
 
 The application in Go also implements the reverse proxy mechanism, the essence of the example.
@@ -208,12 +208,18 @@ Hitting the Python application:
 
 ```sh
 curl http://localhost:8000
+```
 
+```text
 I'm Python!
 []
+```
 
+```sh
 curl http://localhost:8000/a/b/c
+```
 
+```text
 I'm Python!
 [a/b/c]
 ```
@@ -222,11 +228,18 @@ Hitting the Node application:
 
 ```sh
 curl http://localhost:8000/node
+```
 
+```text
 I'm Node!
 [/node]
+```
 
+```sh
 curl http://localhost:8000/node/a/b/c
+```
+
+```text
 I'm Node!
 [/node/a/b/c]
 ```
@@ -235,11 +248,18 @@ Hitting the Go application:
 
 ```sh
 curl http://localhost:8000/go
+```
 
+```text
 I'm Go!
 [/go]
+```
 
+```sh
 curl http://localhost:8000/go/a/b/c
+```
+
+```text
 I'm Go!
 [/go/a/b/c]
 ```
