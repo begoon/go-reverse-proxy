@@ -165,7 +165,6 @@ RUN python -m venv .venv
 RUN . .venv/bin/activate && pip install uvicorn fastapi
 
 # ---
-
 FROM node:20-bullseye-slim AS build-node
 
 WORKDIR /app
