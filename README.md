@@ -136,7 +136,7 @@ This script starts all three applications on different ports and provides the re
 
 (source .venv/bin/activate && uvicorn main:app --port 9000) &
 (PORT=9100 ./node ./main.js) &
-(PORT=8000 PASSTROUGH_URL=http://localhost:9000 ./proxy) &
+(PORT=8000 ./proxy) &
 
 wait
 exit $?
